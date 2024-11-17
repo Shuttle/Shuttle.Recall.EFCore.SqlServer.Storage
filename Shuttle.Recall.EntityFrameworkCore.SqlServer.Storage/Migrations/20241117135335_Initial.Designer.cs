@@ -12,7 +12,7 @@ using Shuttle.Recall.EntityFrameworkCore.SqlServer.Storage;
 namespace Shuttle.Recall.EntityFrameworkCore.SqlServer.Storage.Migrations
 {
     [DbContext(typeof(StorageDbContext))]
-    [Migration("20241114160758_Initial")]
+    [Migration("20241117135335_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -85,7 +85,10 @@ namespace Shuttle.Recall.EntityFrameworkCore.SqlServer.Storage.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<long>("SequenceNumber")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("SequenceNumber"));
 
                     b.HasKey("Id", "Version");
 

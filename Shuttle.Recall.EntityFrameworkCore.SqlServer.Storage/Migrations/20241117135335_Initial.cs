@@ -59,7 +59,8 @@ public partial class Initial : Migration
                 EventEnvelope = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                 EventId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                 EventTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                SequenceNumber = table.Column<long>(type: "bigint", nullable: false),
+                SequenceNumber = table.Column<long>(type: "bigint", nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
                 DateRegistered = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
                 CorrelationId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
             },

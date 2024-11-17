@@ -41,6 +41,8 @@ public static class ServiceCollectionExtensions
             dbContextFactoryBuilder.UseSqlServer(connectionString, sqlServerOptions => { sqlServerOptions.CommandTimeout(sqlServerStorageBuilder.Options.CommandTimeout); });
         });
 
+        services.AddHostedService<EventStoreHostedService>();
+
         return services;
     }
 }

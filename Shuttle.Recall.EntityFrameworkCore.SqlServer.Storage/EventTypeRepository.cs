@@ -27,7 +27,20 @@ public class EventTypeRepository : IEventTypeRepository
 
             if (!_cache.ContainsKey(key))
             {
-                _cache.Add(key, (await _dbContextService.Get<StorageDbContext>().EventTypes.FirstAsync(item => item.TypeName.Equals(typeName), cancellationToken: cancellationToken)).Id);
+                var model = await _dbContextService.Get<StorageDbContext>().EventTypes.FirstOrDefaultAsync(item => item.TypeName.Equals(typeName), cancellationToken: cancellationToken);
+
+                if (model == null)
+                {
+                    model = new()
+                    {
+                        Id = Guid.NewGuid(),
+                        TypeName = typeName
+                    };
+
+                    _dbContextService.Get<StorageDbContext>().EventTypes.Add(model);
+                }
+
+                _cache.Add(key, model.Id);
             }
 
             return _cache[key];

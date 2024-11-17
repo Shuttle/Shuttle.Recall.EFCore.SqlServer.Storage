@@ -17,6 +17,7 @@ public class PrimitiveEvent
 
     public Guid EventTypeId { get; set; }
 
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long SequenceNumber { get; set; }
 
     public DateTime DateRegistered { get; set; }

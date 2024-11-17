@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Shuttle.Core.Contract;
 using Shuttle.Extensions.EntityFrameworkCore;
 
@@ -8,9 +9,11 @@ public class PrimitiveEventRepository : IPrimitiveEventRepository
 {
     private readonly IDbContextService _dbContextService;
     private readonly IEventTypeRepository _eventTypeRepository;
+    private readonly SqlServerStorageOptions _sqlServerStorageOptions;
 
-    public PrimitiveEventRepository(IDbContextService dbContextService, IEventTypeRepository eventTypeRepository)
+    public PrimitiveEventRepository(IOptions<SqlServerStorageOptions> sqlServerStorageOptions, IDbContextService dbContextService, IEventTypeRepository eventTypeRepository)
     {
+        _sqlServerStorageOptions = Guard.AgainstNull(Guard.AgainstNull(sqlServerStorageOptions).Value);
         _dbContextService = Guard.AgainstNull(dbContextService);
         _eventTypeRepository = Guard.AgainstNull(eventTypeRepository);
     }
@@ -19,12 +22,13 @@ public class PrimitiveEventRepository : IPrimitiveEventRepository
     {
         return await _dbContextService.Get<StorageDbContext>().PrimitiveEvents
             .Join(_dbContextService.Get<StorageDbContext>().EventTypes, primitiveEvent => primitiveEvent.EventTypeId, eventType => eventType.Id, (primitiveEvent, eventType) => new { primitiveEvent, eventType })
-            .Where(item => item.primitiveEvent.EventId == id)
+            .Where(item => item.primitiveEvent.Id == id)
             .Select(item => new PrimitiveEvent
             {
                 Id = item.primitiveEvent.Id,
                 Version = item.primitiveEvent.Version,
                 EventId = item.primitiveEvent.EventId,
+                EventEnvelope = item.primitiveEvent.EventEnvelope,
                 EventType = item.eventType.TypeName,
                 SequenceNumber = item.primitiveEvent.SequenceNumber,
                 DateRegistered = item.primitiveEvent.DateRegistered,
@@ -42,9 +46,7 @@ public class PrimitiveEventRepository : IPrimitiveEventRepository
 
     public async Task RemoveAsync(Guid id)
     {
-        await _dbContextService.Get<StorageDbContext>().Database.ExecuteSqlRawAsync("delete from PrimitiveEvent where EventId = {0}", id);
-
-        await _dbContextService.Get<StorageDbContext>().SaveChangesAsync();
+        await _dbContextService.Get<StorageDbContext>().Database.ExecuteSqlRawAsync($"delete from [{_sqlServerStorageOptions.Schema}].[PrimitiveEvent] where Id = '{id}'");
     }
 
     public async ValueTask<long> SaveAsync(IEnumerable<PrimitiveEvent> primitiveEvents)

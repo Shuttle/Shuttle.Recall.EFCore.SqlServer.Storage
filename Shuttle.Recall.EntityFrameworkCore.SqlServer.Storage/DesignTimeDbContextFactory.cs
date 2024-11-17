@@ -13,9 +13,19 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<StorageDbC
     {
         var configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
+            .AddCommandLine(args)
             .Build();
 
         var sqlServerStorageOptions = configuration.GetSection(SqlServerStorageOptions.SectionName).Get<SqlServerStorageOptions>()!;
+
+        var schemaOverride = configuration["SchemaOverride"];
+
+        if (!string.IsNullOrWhiteSpace(schemaOverride))
+        {
+            Console.WriteLine(@$"[schema-override] : original schema = '{sqlServerStorageOptions.Schema}' / schema override = '{schemaOverride}'");
+
+            sqlServerStorageOptions.Schema = schemaOverride;
+        }
 
         var optionsBuilder = new DbContextOptionsBuilder<StorageDbContext>();
 

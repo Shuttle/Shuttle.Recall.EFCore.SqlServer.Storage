@@ -82,7 +82,10 @@ namespace Shuttle.Recall.EntityFrameworkCore.SqlServer.Storage.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<long>("SequenceNumber")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("SequenceNumber"));
 
                     b.HasKey("Id", "Version");
 
