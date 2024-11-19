@@ -2,7 +2,7 @@
 using Shuttle.Core.Contract;
 using Shuttle.Core.Pipelines;
 using Shuttle.Core.Reflection;
-using Shuttle.Extensions.EntityFrameworkCore;
+using Shuttle.Extensions.EFCore;
 
 namespace Shuttle.Recall.EFCore.SqlServer.Storage;
 

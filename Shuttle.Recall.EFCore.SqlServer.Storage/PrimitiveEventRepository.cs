@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Shuttle.Core.Contract;
-using Shuttle.Extensions.EntityFrameworkCore;
+using Shuttle.Extensions.EFCore;
 
 namespace Shuttle.Recall.EFCore.SqlServer.Storage;
 

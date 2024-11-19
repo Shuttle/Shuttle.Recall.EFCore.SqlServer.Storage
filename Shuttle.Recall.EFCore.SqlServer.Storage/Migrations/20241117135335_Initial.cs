@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Shuttle.Core.Contract;
-using Shuttle.Extensions.EntityFrameworkCore;
+using Shuttle.Extensions.EFCore;
 
 #nullable disable
 

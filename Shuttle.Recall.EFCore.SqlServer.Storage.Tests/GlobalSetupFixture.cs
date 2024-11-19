@@ -3,8 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using NUnit.Framework;
-using Shuttle.Extensions.EntityFrameworkCore;
-using Shuttle.Recall.EFCore.SqlServer.Storage;
+using Shuttle.Extensions.EFCore;
 
 namespace Shuttle.Recall.EFCore.SqlServer.Storage.Tests;
 

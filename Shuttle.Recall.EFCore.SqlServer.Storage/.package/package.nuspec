@@ -16,11 +16,14 @@
 		<copyright>Copyright (c) 2024, Eben Roux</copyright>
 		<tags>event sourcing</tags>
 		<dependencies>
+      <dependency id="Microsoft.EntityFrameworkCore.Design" version="7.0.20" />
       <dependency id="Microsoft.EntityFrameworkCore.SqlServer" version="7.0.20" />
       <dependency id="Microsoft.Extensions.Configuration" version="8.0.0" />
       <dependency id="Microsoft.Extensions.Configuration.Binder" version="8.0.2" />
       <dependency id="Microsoft.Extensions.Configuration.Json" version="8.0.1" />
       <dependency id="Shuttle.Core.Contract" version="20.0.0" />
+      <dependency id="Shuttle.Extensions.EntityFrameworkCore" version="20.0.0" />
+      <dependency id="Shuttle.Extensions.EntityFrameworkCore.ThreadDbContextScope" version="20.0.0" />
       <dependency id="Shuttle.Recall" version="20.0.0" />
 		</dependencies>
 	</metadata>

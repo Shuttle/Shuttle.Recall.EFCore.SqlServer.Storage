@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using Shuttle.Extensions.EntityFrameworkCore;
+using Shuttle.Extensions.EFCore;
 
 namespace Shuttle.Recall.EFCore.SqlServer.Storage;
 

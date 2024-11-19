@@ -1,11 +1,9 @@
-﻿using System.Transactions;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using NUnit.Framework;
-using Shuttle.Extensions.EntityFrameworkCore;
-using Shuttle.Recall.EFCore.SqlServer.Storage;
+using Shuttle.Extensions.EFCore;
 using Shuttle.Recall.Sql.Storage.Tests;
 
 namespace Shuttle.Recall.EFCore.SqlServer.Storage.Tests;
