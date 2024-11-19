@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using NUnit.Framework;
 using Shuttle.Extensions.EntityFrameworkCore;
-using Shuttle.Recall.EntityFrameworkCore.SqlServer.Storage;
+using Shuttle.Recall.EFCore.SqlServer.Storage;
 
 namespace Shuttle.Recall.EFCore.SqlServer.Storage.Tests;
 

@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shuttle.Recall.EntityFrameworkCore.SqlServer.Storage\Shuttle.Recall.EntityFrameworkCore.SqlServer.Storage.csproj" />
+    <ProjectReference Include="..\Shuttle.Recall.EFCore.SqlServer.Storage\Shuttle.Recall.EFCore.SqlServer.Storage.csproj" />
   </ItemGroup>
 
   <ItemGroup>

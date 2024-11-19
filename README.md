@@ -1,7 +1,7 @@
-# Shuttle.Recall.EntityFrameworkCore.SqlServer.Storage
+# Shuttle.Recall.EFCore.SqlServer.Storage
 
 ```
-PM> Install-Package Shuttle.Recall.EntityFrameworkCore.SqlServer.Storage
+PM> Install-Package Shuttle.Recall.EFCore.SqlServer.Storage
 ```
 
 An Entity Framework Core Sql Server implementation of the `Shuttle.Recall` event sourcing dependencies.
