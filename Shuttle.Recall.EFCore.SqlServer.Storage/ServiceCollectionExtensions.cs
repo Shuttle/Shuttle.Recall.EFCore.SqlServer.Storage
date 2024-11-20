@@ -24,6 +24,7 @@ public static class ServiceCollectionExtensions
         {
             options.ConnectionStringName = sqlServerStorageBuilder.Options.ConnectionStringName;
             options.Schema = sqlServerStorageBuilder.Options.Schema;
+            options.MigrationsHistoryTableName = sqlServerStorageBuilder.Options.MigrationsHistoryTableName;
             options.CommandTimeout = sqlServerStorageBuilder.Options.CommandTimeout;
         });
 
