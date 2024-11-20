@@ -26,7 +26,7 @@ public class PrimitiveEventQuery : IPrimitiveEventQuery
             eventTypeIds.Add(await _eventTypeRepository.GetIdAsync(Guard.AgainstNullOrEmptyString(eventType.FullName)));
         }
 
-        var queryable = dbContext.PrimitiveEvents.AsQueryable();
+        var queryable = dbContext.PrimitiveEvents.Include(item => item.EventType).AsQueryable();
 
         if (eventTypeIds.Count > 0)
         {

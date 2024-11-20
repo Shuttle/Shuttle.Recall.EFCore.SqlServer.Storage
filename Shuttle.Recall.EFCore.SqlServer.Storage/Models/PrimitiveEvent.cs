@@ -24,6 +24,8 @@ public class PrimitiveEvent
 
     public Guid? CorrelationId { get; set; }
 
+    public EventType EventType { get; set; } = null!;
+
     public class Specification
     {
         private readonly List<Type> _eventTypes = new();

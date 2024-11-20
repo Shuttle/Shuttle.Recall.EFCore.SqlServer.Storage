@@ -33,6 +33,11 @@ public class StorageDbContext : DbContext, IDbContextSchema
         modelBuilder.Entity<Models.PrimitiveEvent>()
             .Property(e => e.DateRegistered)
             .HasDefaultValueSql("GETUTCDATE()");
+
+        modelBuilder.Entity<Models.PrimitiveEvent>()
+            .HasOne(e => e.EventType)
+            .WithMany()
+            .HasForeignKey(e => e.EventTypeId);
     }
 
     public string Schema => _sqlServerStorageOptions.Schema;
