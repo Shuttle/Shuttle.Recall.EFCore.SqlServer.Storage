@@ -6,9 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using Shuttle.Extensions.EFCore;
-using Shuttle.Recall.EFCore.SqlServer.Storage;
+using Shuttle.Recall.Logging;
 
-namespace Shuttle.Recall.Sql.Storage.Tests;
+namespace Shuttle.Recall.EFCore.SqlServer.Storage.Tests;
 
 [SetUpFixture]
 public class SqlConfiguration
@@ -29,7 +29,8 @@ public class SqlConfiguration
                 builder.Options.ConnectionStringName = options.ConnectionStringName;
                 builder.Options.Schema = options.Schema;
                 builder.Options.MigrationsHistoryTableName = options.MigrationsHistoryTableName;
-            });
+            })
+            .AddEventStoreLogging(); ;
 
         services.AddDbContextFactory<StorageDbContext>(builder =>
         {

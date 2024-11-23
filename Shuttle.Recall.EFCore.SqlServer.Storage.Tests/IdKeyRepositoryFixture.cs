@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using NUnit.Framework;
 using Shuttle.Extensions.EFCore;
-using Shuttle.Recall.Sql.Storage.Tests;
 
 namespace Shuttle.Recall.EFCore.SqlServer.Storage.Tests;
 
