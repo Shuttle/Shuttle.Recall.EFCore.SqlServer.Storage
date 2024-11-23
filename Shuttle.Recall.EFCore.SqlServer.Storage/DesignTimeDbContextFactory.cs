@@ -18,6 +18,11 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<StorageDbC
 
         var sqlServerStorageOptions = configuration.GetSection(SqlServerStorageOptions.SectionName).Get<SqlServerStorageOptions>()!;
 
+        if (sqlServerStorageOptions == null)
+        {
+            throw new InvalidOperationException($"Could not find a section called '{SqlServerStorageOptions.SectionName}' in the configuration.");
+        }
+
         var schemaOverride = configuration["SchemaOverride"];
 
         if (!string.IsNullOrWhiteSpace(schemaOverride))

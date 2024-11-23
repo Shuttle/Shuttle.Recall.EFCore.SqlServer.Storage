@@ -6,7 +6,7 @@ public class SqlServerStorageOptions
 
     public string ConnectionStringName { get; set; } = string.Empty;
     public string Schema { get; set; } = "dbo";
-    public string MigrationsHistoryTableName { get; set; } = "__EFMigrationsHistory";
+    public string MigrationsHistoryTableName { get; set; } = "__StorageMigrationsHistory";
     public int CommandTimeout { get; set; } = 30;
 
 }

@@ -12,7 +12,7 @@ public class StorageFixture : RecallFixture
     [Test]
     public async Task Should_be_able_to_exercise_event_store_async()
     {
-        var services = SqlConfiguration.GetServiceCollection(new ServiceCollection().AddSingleton(new Mock<IProjectionRepository>().Object));
+        var services = SqlConfiguration.GetServiceCollection();
 
         var serviceProvider = services.BuildServiceProvider();
 
