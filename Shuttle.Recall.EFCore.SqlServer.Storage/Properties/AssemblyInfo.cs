@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 #endif
 
 [assembly: AssemblyVersion("20.0.0.0")]
-[assembly: AssemblyCopyright("Copyright (c) 2024, Eben Roux")]
+[assembly: AssemblyCopyright("Copyright (c) #{Year}#, Eben Roux")]
 [assembly: AssemblyProduct("Shuttle.Recall.EFCore.SqlServer.Storage")]
 [assembly: AssemblyCompany("Eben Roux")]
 [assembly: AssemblyConfiguration("Release")]

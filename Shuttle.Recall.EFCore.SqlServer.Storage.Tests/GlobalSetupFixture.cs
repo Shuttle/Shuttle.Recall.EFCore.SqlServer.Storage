@@ -19,6 +19,11 @@ public class GlobalSetupFixture
 
         var storageOptions = configuration.GetSection(SqlServerStorageOptions.SectionName).Get<SqlServerStorageOptions>()!;
 
+        if (storageOptions == null)
+        {
+            throw new InvalidOperationException($"Could not find a section called '{SqlServerStorageOptions.SectionName}' in the configuration.");
+        }
+
         var dbContextOptions = new DbContextOptionsBuilder<StorageDbContext>()
             .UseSqlServer(configuration.GetConnectionString(storageOptions.ConnectionStringName), sqlServerBuilder =>
                 {
