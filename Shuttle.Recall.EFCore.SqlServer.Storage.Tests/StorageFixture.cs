@@ -21,8 +21,10 @@ public class StorageFixture : RecallFixture
 
         await using (var dbContext = await dbContextFactory.CreateDbContextAsync())
         {
-            await dbContext.Database.ExecuteSqlRawAsync($"delete from [{options.Schema}].[PrimitiveEvent] where Id in ('{OrderId}', '{OrderProcessId}')");
-            await dbContext.Database.ExecuteSqlRawAsync($"delete from [{options.Schema}].[PrimitiveEventJournal] where Id in ('{OrderId}', '{OrderProcessId}')");
+#pragma warning disable EF1002
+            await dbContext.Database.ExecuteSqlRawAsync($"DELETE FROM [{options.Schema}].[PrimitiveEvent] WHERE Id IN ('{OrderId}', '{OrderProcessId}')");
+            await dbContext.Database.ExecuteSqlRawAsync($"DELETE FROM [{options.Schema}].[PrimitiveEventJournal] WHERE Id IN ('{OrderId}', '{OrderProcessId}')");
+#pragma warning restore EF1002
         }
 
         await ExerciseStorageAsync(services);

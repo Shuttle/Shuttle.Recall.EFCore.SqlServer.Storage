@@ -34,7 +34,6 @@ public class PrimitiveEvent
 
         public IEnumerable<Guid> Ids => _ids.AsReadOnly();
         public long SequenceNumberStart { get; private set; }
-        public long SequenceNumberEnd { get; private set; }
         public int MaximumRows { get; private set; }
 
         public Specification AddEventType<T>()
@@ -88,15 +87,9 @@ public class PrimitiveEvent
             return this;
         }
 
-        public Specification WithRange(long sequenceNumberStart, int count)
+        public Specification WithSequenceNumberStart(long sequenceNumberStart)
         {
-            if (count < 1)
-            {
-                throw new ArgumentException(Resources.CountMustBeGreaterThanZero);
-            }
-
             SequenceNumberStart = sequenceNumberStart;
-            SequenceNumberEnd = sequenceNumberStart + (count - 1);
 
             return this;
         }

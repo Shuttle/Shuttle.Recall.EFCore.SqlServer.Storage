@@ -25,7 +25,9 @@ public class IdKeyRepositoryFixture
 
         await using (var dbContext = await dbContextFactory.CreateDbContextAsync())
         {
-            await dbContext.Database.ExecuteSqlRawAsync($"delete from [{options.Schema}].[IdKey] where Id = @Id", new SqlParameter("@Id", Id));
+#pragma warning disable EF1002
+            await dbContext.Database.ExecuteSqlRawAsync($"DELETE FROM [{options.Schema}].[IdKey] WHERE Id = @Id", new SqlParameter("@Id", Id));
+#pragma warning restore EF1002
         }
 
         var keyA = $"a={Id}";

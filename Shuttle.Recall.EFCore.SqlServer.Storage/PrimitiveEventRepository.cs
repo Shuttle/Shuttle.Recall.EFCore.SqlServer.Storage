@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Shuttle.Core.Contract;
 using Shuttle.Extensions.EFCore;
@@ -46,7 +47,9 @@ public class PrimitiveEventRepository : IPrimitiveEventRepository
 
     public async Task RemoveAsync(Guid id)
     {
-        await _dbContextService.Get<StorageDbContext>().Database.ExecuteSqlRawAsync($"delete from [{_sqlServerStorageOptions.Schema}].[PrimitiveEvent] where Id = '{id}'");
+#pragma warning disable EF1002
+        await _dbContextService.Get<StorageDbContext>().Database.ExecuteSqlRawAsync($"DELETE FROM [{_sqlServerStorageOptions.Schema}].[PrimitiveEvent] WHERE Id = @Id", new SqlParameter("@Id", id));
+#pragma warning restore EF1002
     }
 
     public async ValueTask<long> SaveAsync(IEnumerable<PrimitiveEvent> primitiveEvents)

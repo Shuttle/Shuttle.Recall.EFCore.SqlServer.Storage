@@ -26,9 +26,7 @@ public class SqlConfiguration
             .AddSingleton<IDbContextService, DbContextService>()
             .AddSqlServerEventStorage(builder =>
             {
-                builder.Options.ConnectionStringName = options.ConnectionStringName;
-                builder.Options.Schema = options.Schema;
-                builder.Options.MigrationsHistoryTableName = options.MigrationsHistoryTableName;
+                configuration.GetSection(SqlServerStorageOptions.SectionName).Bind(builder.Options);
             })
             .AddEventStoreLogging(); ;
 
