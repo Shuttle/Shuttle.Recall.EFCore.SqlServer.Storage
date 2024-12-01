@@ -14,6 +14,11 @@ public class SqlServerStorageOptionsValidator : IValidateOptions<SqlServerStorag
             return ValidateOptionsResult.Fail(Resources.ConnectionStringOptionException);
         }
 
+        if (string.IsNullOrWhiteSpace(options.Schema))
+        {
+            return ValidateOptionsResult.Fail(Resources.SchemaOptionException);
+        }
+
         return ValidateOptionsResult.Success;
     }
 }
